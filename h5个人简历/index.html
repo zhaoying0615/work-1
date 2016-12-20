@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <script>
+        /*移动适配方案*/
+        var desW = 640;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW / desW * 100 + 'px';
+    </script>
+</head>
+<body>
+<section class="main">
+    <div class="music">
+        <!--<audio src="audio/群星-Souvenirs%20d_enfance.mp3" loop preload="none" id="MP3"></audio>-->
+        <div class="music1">
+            <div class="music2"></div>
+        </div>
+    </div>
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide slide1" id="page1">
+                <img src="img/page1/1.png" alt="">
+                <img src="img/page1/2.png" alt="">
+                <img src="img/page1/3.png" alt="">
+                <img src="img/page1/4.png" alt="">
+                <img src="img/page1/简历.png" alt="">
+            </div>
+            <div class="swiper-slide slide2" id="page2">
+                <img src="img/page2/name.jpeg" alt="">
+                <span>赵颖</span>
+                <img src="img/page2/1.png" alt="">
+                <span>前端开发工程师</span>
+                <span>1635369407@qq.com</span>
+                <span>2年</span>
+                <span>大专</span>
+            </div>
+            <div class="swiper-slide slide3">
+                <img src="img/page3/1.png" alt="">
+                <img src="img/page3/3.png" alt="">
+                <img src="img/page3/2.png" alt="">
+                <img src="img/page3/2.png" alt="">
+                <img src="img/page3/2.png" alt="">
+                <img src="img/page3/2.png" alt="">
+                <img src="img/page3/2.png" alt="">
+                <img src="img/page3/2.png" alt="">
+                <img src="img/page3/2.png" alt="">
+                <span>自我评价</span>
+                <span>积极<br/>向上</span>
+                <span>吃苦<br/>耐劳</span>
+                <span>善于<br/>沟通</span>
+                <span>踏实<br/>稳重</span>
+                <span>团队<br/>互助</span>
+                <span>拼搏</span>
+                <span>诚恳</span>
+
+            </div>
+            <div class="swiper-slide slide4" id="page4">
+                <p>技能</p>
+                <span>精通Javascript、HTML、CSS，并且理解掌握Javascript语言核心技术DOM、Ajax、JSON、JSONP等;</span>
+                <span>熟练使用jQuery，熟悉zepto，Bootstrap，对angularJs有一定运用，了解React。</span>
+                <span>了解HTML5+CSS3，能够移动端开发，了解响应式开发，能够WebAPP开发。</span>
+                <span>熟练运用ajax、jsonp技术与后台处理数据，熟悉浏览器和服务器交互机制。</span>
+                <span>了解Node.js的基本运用，es6新增属性和方法；</span>
+                <span>了解W3C标准，HTML语义化，H5新增熟悉和内容。</span>
+                <span>熟悉主流浏览器的差异，对前端性能优化、解决多浏览器兼容性问题有一定的经验</span>
+                <span>熟悉js面向对象中的继承、封装、单例、工程、原型等模式，坚持降低程序耦合度、提高代码复用性的设计理念，使代码高度模块化</span>
+                <span>对gulp有一定了解，初步认识webpack；熟练使用Webstrom、PS、github工具等；</span>
+
+            </div>
+            <div class="swiper-slide slide5" id="page5">
+                <div class="wrap">
+                    <ul>
+                        <li>谢谢观看</li>
+                        <li>谢谢观看</li>
+                        <li>谢谢观看</li>
+                        <li>谢谢观看</li>
+                        <li>Thanks</li>
+                        <li>Thanks</li>
+                    </ul>
+
+                </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+<script src="js/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        direction: 'vertical',// 垂直方向
+        loop: true,
+        onTransitionEnd: function (swiper) {
+            var slides = swiper.slides;
+            var cueIndex = swiper.activeIndex;
+            var lastIndexSlide = slides.length - 1;//现在最后一块滑块
+            var trueIndexSlide = slides.length - 2;//原来最后一块滑块
+            [].forEach.call(slides, function (item, index) {
+                item.id = '';
+                if (cueIndex == index) {
+                    switch (index) {
+                        case 0:
+                            item.id = 'page' + trueIndexSlide;
+                            break;
+                        case lastIndexSlide:
+                            item.id = 'page1';
+                            break;
+                        default:
+                            item.id = 'page' + cueIndex;
+                            break;
+                    }
+                }
+
+            })
+        }
+
+    });
+
+
+    //音乐
+    var music = document.querySelector('.music');
+    var MP3 = document.querySelector('#MP3');
+
+    window.setTimeout(function () {
+        MP3.play();
+        MP3.addEventListener('canplay', function () {
+            music.className = 'music musicCur'
+        })
+    }, 1000);
+    music.addEventListener('click', function () {
+        if (MP3.paused) {
+            MP3.play();
+            music.className = 'music musicCur'
+
+        } else {
+            MP3.pause();
+            music.className = 'music';
+            music.style.opacity = 1;
+        }
+    }, false)
+</script>
